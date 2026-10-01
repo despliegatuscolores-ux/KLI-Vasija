@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KLI // VASIJA — Sovereign Container Engine [App 03]</title>
+    <script src="https://cdn.jsdelivr.net/npm/react@18/umd/react.production.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&display=swap');
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background-color: #080808;
+            color: #e5e5e5;
+        }
+        .scrollbar-none::-webkit-scrollbar { display: none; }
+        .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-[#080808] text-[#e5e5e5] min-h-screen flex flex-col antialiased selection:bg-neutral-800 selection:text-white">
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+        function App() {
+            const [view, setView] = React.useState('home'); // home, principles, structure
+
+            const principles = [
+                {
+                    title: "01. El Silencio Operativo",
+                    desc: "La vasija no compite por atención. No emite ruido, no busca validación externa ni emite notificaciones. Opera desde la quietud absoluta."
+                },
+                {
+                    title: "02. Soberanía Absoluta",
+                    desc: "No hay intermediarios, terapeutas ni guías. El contenedor es local, privado y autónomo. Tus datos no salen de tu dispositivo."
+                },
+                {
+                    title: "03. El Contenedor Estanco",
+                    desc: "Una vasija rota se desangra hacia fuera. Una vasija íntegra contiene su propia energía, aguanta la fricción y quema su propia estática sin contaminar el entorno."
+                },
+                {
+                    title: "04. Cero Adornos",
+                    desc: "Sin estéticas artificiales ni promesas comerciales. La forma sigue a la función: un instrumento frío, afilado y preciso para el autogobierno."
+                }
+            ];
+
+            return (
+                <div className="max-w-xl mx-auto px-6 py-12 flex flex-col min-h-screen justify-between">
+                    {/* Header */}
+                    <header className="border-b border-neutral-800 pb-6 flex justify-between items-center">
+                        <div>
+                            <h1 className="text-xl font-bold tracking-widest text-neutral-100">KLI // VASIJA</h1>
+                            <p className="text-xs text-neutral-500 tracking-wider mt-1">Sovereign Container Engine [App 03]</p>
+                        </div>
+                        <button 
+                            onClick={() => setView('home')}
+                            className="text-xs tracking-widest uppercase border border-neutral-800 px-3 py-1.5 hover:border-neutral-600 transition-colors text-neutral-400"
+                        >
+                            Centro
+                        </button>
+                    </header>
+
+                    {/* Main Content */}
+                    <main className="my-auto py-8">
+                        {view === 'home' && (
+                            <div className="space-y-8 animate-fadeIn">
+                                <div className="space-y-3">
+                                    <h2 className="text-lg font-medium text-neutral-200">El Contenedor Definitivo.</h2>
+                                    <p className="text-sm text-neutral-400 leading-relaxed">
+                                        KLI es la arquitectura de la vasija soberana. Este espacio recoge los principios estructurales que sostienen la autonomía, la materia y el silencio operativo frente al ruido del mundo.
+                                    </p>
+                                </div>
+
+                                <div className="grid grid-cols-1 gap-4 pt-4">
+                                    <button 
+                                        onClick={() => setView('principles')}
+                                        className="text-left border border-neutral-800 p-5 hover:border-neutral-500 transition-all group bg-neutral-950"
+                                    >
+                                        <div className="text-xs text-neutral-500 tracking-wider mb-1">MANIFIESTO</div>
+                                        <div className="text-sm font-medium text-neutral-200 group-hover:text-white">Los Pilares de la Vasija</div>
+                                        <div className="text-xs text-neutral-500 mt-2">Principios rectores del autogobierno y la soberanía interior.</div>
+                                    </button>
+
+                                    <button 
+                                        onClick={() => setView('structure')}
+                                        className="text-left border border-neutral-800 p-5 hover:border-neutral-500 transition-all group bg-neutral-950"
+                                    >
+                                        <div className="text-xs text-neutral-500 tracking-wider mb-1">ARQUITECTURA</div>
+                                        <div className="text-sm font-medium text-neutral-200 group-hover:text-white">El Ecosistema KLI</div>
+                                        <div className="text-xs text-neutral-500 mt-2">Mapa técnico de las tres aplicaciones y su integración local.</div>
+                                    </button>
+                                </div>
+                            </div>
+                        )}
+
+                        {view === 'principles' && (
+                            <div className="space-y-6">
+                                <div>
+                                    <span className="text-xs text-neutral-500 tracking-widest uppercase">Manifiesto KLI</span>
+                                    <h3 className="text-base font-medium text-neutral-200 mt-1">Leyes de la Vasija</h3>
+                                </div>
+
+                                <div className="space-y-4 pt-2">
+                                    {principles.map((p, idx) => (
+                                        <div key={idx} className="border border-neutral-800 bg-neutral-950 p-5 space-y-2">
+                                            <div className="text-xs font-medium text-neutral-200">{p.title}</div>
+                                            <p className="text-xs text-neutral-400 leading-relaxed">{p.desc}</p>
+                                        </div>
+                                    ))}
+                                </div>
+
+                                <button 
+                                    onClick={() => setView('home')}
+                                    className="w-full border border-neutral-800 text-neutral-300 py-3 text-xs uppercase tracking-widest hover:border-neutral-600 transition-colors mt-4"
+                                >
+                                    Volver al Centro
+                                </button>
+                            </div>
+                        )}
+
+                        {view === 'structure' && (
+                            <div className="space-y-6">
+                                <div>
+                                    <span className="text-xs text-neutral-500 tracking-widest uppercase">Ecosistema Modular</span>
+                                    <h3 className="text-base font-medium text-neutral-200 mt-1">Las Tres Puertas de KLI</h3>
+                                </div>
+
+                                <div className="space-y-4 pt-2">
+                                    <div className="border border-neutral-800 bg-neutral-950 p-5 space-y-2">
+                                        <div className="text-xs text-neutral-500 tracking-wider">APP 01 // PURGA</div>
+                                        <div className="text-xs font-medium text-neutral-200">Corte de Bucle y Rumiación</div>
+                                        <p className="text-xs text-neutral-400">Escritura ciega, test del hecho puro y sostenimiento de la carga estática.</p>
+                                    </div>
+
+                                    <div className="border border-neutral-800 bg-neutral-950 p-5 space-y-2">
+                                        <div className="text-xs text-neutral-500 tracking-wider">APP 02 // LUZ</div>
+                                        <div className="text-xs font-medium text-neutral-200">Diagnóstico de Impulso (Ego vs. Alma)</div>
+                                        <p className="text-xs text-neutral-400">Espejo elemental a través de Fuego, Agua, Aire y Tierra para verificar la señal pura.</p>
+                                    </div>
+
+                                    <div className="border border-neutral-800 bg-neutral-950 p-5 space-y-2">
+                                        <div className="text-xs text-neutral-500 tracking-wider">APP 03 // VASIJA</div>
+                                        <div className="text-xs font-medium text-neutral-200">El Contenedor y Manifiesto</div>
+                                        <p className="text-xs text-neutral-400">La arquitectura soberana, local y sin dependencias que unifica todo el sistema.</p>
+                                    </div>
+                                </div>
+
+                                <button 
+                                    onClick={() => setView('home')}
+                                    className="w-full border border-neutral-800 text-neutral-300 py-3 text-xs uppercase tracking-widest hover:border-neutral-600 transition-colors mt-4"
+                                >
+                                    Volver al Centro
+                                </button>
+                            </div>
+                        )}
+                    </main>
+
+                    {/* Footer */}
+                    <footer className="border-t border-neutral-900 pt-6 text-center text-[10px] text-neutral-600 tracking-widest uppercase">
+                        KLI // VASIJA — Cero Adornos. Cero Dependencia. Sin API.
+                    </footer>
+                </div>
+            );
+        }
+
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+</html>
